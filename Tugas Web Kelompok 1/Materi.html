@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beranda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Custom Tailwind configuration for your color palette
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#050C9C",
+              secondary: "#3572EF",
+              accent: "#3ABEF9",
+              light: "#A7E6FF",
+            },
+          },
+        },
+      };
+      document.addEventListener("DOMContentLoaded", function () {
+        const clickSound = new Audio("ASSETS/mouseklik.mp3");
+
+        function enableAudio() {
+          clickSound
+            .play()
+            .catch((e) => console.warn("Audio play blocked:", e));
+          document.removeEventListener("click", enableAudio);
+        }
+
+        document.addEventListener("click", enableAudio);
+
+        function playClickSound() {
+          const soundClone = clickSound.cloneNode();
+          soundClone.play().catch((e) => console.error("Audio play error:", e));
+        }
+
+        document.querySelectorAll("a, button").forEach((element) => {
+          element.addEventListener("click", playClickSound);
+        });
+      });
+    </script>
+  </head>
+  <body class="bg-light text-gray-800">
+    <header class="bg-primary text-white py-4">
+      <div class="container mx-auto text-center px-4">
+        <h1 class="text-3xl font-bold animate-bounce">
+          MATERI KOMPONEN-KOMPONEN KOMPUTER
+        </h1>
+        <nav class="mt-4">
+          <ul class="flex flex-wrap justify-center space-x-6">
+            <li>
+              <a href="index.html" class="text-light hover:text-accent"
+                >Beranda</a
+              >
+            </li>
+            <li>
+              <a href="Materi.html" class="text-light hover:text-accent"
+                >Materi</a
+              >
+            </li>
+            <li>
+              <a href="simulasi.html" class="text-light hover:text-accent"
+                >Simulasi</a
+              >
+            </li>
+            <li>
+              <a href="quiz.html" class="text-light hover:text-accent">Kuis</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container mx-auto my-8 px-4">
+      <nav class="bg-light p-4 rounded-lg shadow-md mb-8">
+        <h2 class="text-xl font-bold text-primary">Daftar Isi</h2>
+        <ul class="list-disc pl-6 text-sm md:text-base">
+          <li>
+            <a href="#casing-cpu" class="text-secondary hover:text-accent">
+              1. Casing CPU
+            </a>
+          </li>
+          <li>
+            <a href="#motherboard" class="text-secondary hover:text-accent">
+              2. Motherboard/Mainboard
+            </a>
+          </li>
+          <li>
+            <a href="#processor" class="text-secondary hover:text-accent">
+              3. Processor/CPU
+            </a>
+          </li>
+          <li>
+            <a href="#vga" class="text-secondary hover:text-accent"> 4. VGA </a>
+          </li>
+          <li>
+            <a href="#hard-disk" class="text-secondary hover:text-accent">
+              5. Hard Disk
+            </a>
+          </li>
+          <li>
+            <a href="#cd-dvd-rom" class="text-secondary hover:text-accent">
+              6. CD/DVD-ROM
+            </a>
+          </li>
+          <li>
+            <a href="#ram" class="text-secondary hover:text-accent"> 7. RAM </a>
+          </li>
+          <li>
+            <a href="#power-supply" class="text-secondary hover:text-accent">
+              8. Power Supply
+            </a>
+          </li>
+          <li>
+            <a href="#sound-card" class="text-secondary hover:text-accent">
+              9. Sound Card
+            </a>
+          </li>
+          <li>
+            <a href="#monitor" class="text-secondary hover:text-accent">
+              10. Monitor
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <section id="casing-cpu" class="mb-8">
+        <h2 class="text-2xl font-bold text-primary">1. Casing CPU</h2>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <img
+            src="ASSETS/CASING KOSONG.png"
+            alt="Gambar casing CPU kosong"
+            class="w-full max-w-md mx-auto"
+          />
+        </div>
+        <p class="text-gray-700 text-sm md:text-base">
+          Casing CPU berfungsi untuk meletakkan dan melindungi berbagai komponen
+          komputer seperti hard disk, power supply, motherboard, CD-ROM, dan
+          lainnya. Casing tersedia dalam berbagai jenis dan harga, mulai dari
+          yang murah hingga yang mahal, sesuai dengan kebutuhan pengguna.
+        </p>
+      </section>
+      <section id="motherboard" class="mb-8">
+        <h2 class="text-2xl font-bold text-primary">
+          2. Motherboard/Mainboard
+        </h2>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <img
+            src="ASSETS/MOTHERBOARD.png"
+            alt="Gambar motherboard"
+            class="w-full max-w-md mx-auto"
+          />
+        </div>
+        <p class="text-gray-700 text-sm md:text-base">
+          Motherboard merupakan papan sirkuit utama yang berfungsi sebagai
+          tempat untuk memasang komponen-komponen kecil seperti hard disk, RAM,
+          sound card, VGA card, internal modem, dan lainnya.
+        </p>
+      </section>
+      <section id="processor" class="mb-8">
+        <h2 class="text-2xl font-bold text-primary">
+          3. Processor/CPU (Central Processing Unit)
+        </h2>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <img
+            src="ASSETS/CPU.png"
+            alt="Gambar processor CPU"
+            class="w-full max-w-md mx-auto"
+          />
+        </div>
+        <p class="text-gray-700 text-sm md:text-base">
+          Processor berfungsi sebagai otak komputer yang melakukan perhitungan
+          dan menjalankan berbagai tugas penting. Komponen ini dipasang pada
+          socket yang tersedia di motherboard.
+        </p>
+      </section>
+      <section id="vga" class="mb-8">
+        <h2 class="text-2xl font-bold text-primary">
+          4. VGA (Video Graphic Adapter)
+        </h2>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <img
+            src="ASSETS/GPU.png"
+            alt="Gambar VGA card"
+            class="w-full max-w-md mx-auto"
+          />
+        </div>
+        <p class="text-gray-700 text-sm md:text-base">
+          VGA berperan dalam mengubah sinyal digital dari komputer menjadi
+          tampilan grafis yang dapat dilihat di layar monitor. Dengan adanya
+          VGA, komputer dapat menampilkan gambar, video, dan animasi dengan
+          lebih baik.
+        </p>
+      </section>
+      <section id="hard-disk" class="mb-8">
+        <h2 class="text-2xl font-bold text-primary">5. Hard Disk</h2>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <img
+            src="ASSETS/SSD.png"
+            alt="Gambar hard disk atau SSD"
+            class="w-full max-w-md mx-auto"
+          />
+        </div>
+        <p class="text-gray-700 text-sm md:text-base">
+          Hard disk berfungsi sebagai media penyimpanan utama pada komputer.
+          Semua file, baik berupa gambar, video, dokumen, hingga sistem operasi,
+          akan disimpan di dalam hard disk.
+        </p>
+      </section>
+      <section id="cd-dvd-rom" class="mb-8">
+        <h2 class="text-2xl font-bold text-primary">6. CD/DVD-ROM</h2>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <img
+            src="ASSETS/dvd.png"
+            alt="Gambar CD/DVD-ROM"
+            class="w-full max-w-md mx-auto"
+          />
+        </div>
+        <p class="text-gray-700 text-sm md:text-base">
+          CD/DVD-ROM adalah perangkat yang digunakan untuk membaca dan menulis
+          data ke dalam CD atau DVD. Fungsinya meliputi membaca data dari CD/DVD
+          serta burning (menulis data) ke dalam CD/DVD.
+        </p>
+      </section>
+      <section id="ram" class="mb-8">
+        <h2 class="text-2xl font-bold text-primary">
+          7. RAM (Random Access Memory)
+        </h2>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <img
+            src="ASSETS/RAM.png"
+            alt="Gambar RAM"
+            class="w-full max-w-md mx-auto"
+          />
+        </div>
+        <p class="text-gray-700 text-sm md:text-base">
+          RAM adalah komponen yang berfungsi sebagai penyimpanan sementara saat
+          komputer menjalankan program atau aplikasi. Data yang tersimpan di RAM
+          akan hilang ketika komputer dimatikan.
+        </p>
+      </section>
+      <section id="power-supply" class="mb-8">
+        <h2 class="text-2xl font-bold text-primary">8. Power Supply</h2>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <img
+            src="ASSETS/power supply.png"
+            alt="Gambar power supply"
+            class="w-full max-w-md mx-auto"
+          />
+        </div>
+        <p class="text-gray-700 text-sm md:text-base">
+          Power supply berfungsi untuk mengubah arus listrik bolak-balik (AC)
+          menjadi arus searah (DC) yang dibutuhkan oleh komponen komputer.
+          Selain itu, power supply juga membantu menstabilkan aliran listrik
+          agar perangkat komputer tidak mengalami kerusakan akibat lonjakan
+          tegangan.
+        </p>
+      </section>
+      <section id="sound-card" class="mb-8">
+        <h2 class="text-2xl font-bold text-primary">9. Sound Card</h2>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <img
+            src="ASSETS/SOUND CARD.png"
+            alt="Gambar sound card"
+            class="w-full max-w-md mx-auto"
+          />
+        </div>
+        <p class="text-gray-700 text-sm md:text-base">
+          Sound card berfungsi untuk mengolah data menjadi suara atau audio yang
+          dapat didengar melalui speaker atau headphone. Komponen ini juga
+          memungkinkan komputer menerima input suara dari mikrofon.
+        </p>
+      </section>
+      <section id="monitor" class="mb-8">
+        <h2 class="text-2xl font-bold text-primary">10. Monitor</h2>
+        <div class="bg-gray-100 p-4 rounded-lg">
+          <img
+            src="ASSETS/MONITOR.png"
+            alt="Gambar monitor"
+            class="w-full max-w-md mx-auto"
+          />
+        </div>
+        <p class="text-gray-700 text-sm md:text-base">
+          Monitor berfungsi sebagai perangkat output yang menampilkan data dalam
+          bentuk grafis, sehingga pengguna dapat melihat hasil dari proses yang
+          dilakukan oleh komputer.
+        </p>
+      </section>
+      <a
+        href="#top"
+        class="block text-center text-white bg-primary py-2 px-4 rounded-lg hover:bg-secondary mt-6 w-max mx-auto transition-all"
+        >⬆️ Kembali ke Atas</a
+      >
+      <section
+        class="bg-gray-100 p-6 rounded-lg shadow-lg border-l-4 border-primary mt-8"
+      >
+        <h2 class="text-2xl font-bold text-primary text-center mb-4">
+          🎥 Rekomendasi Video Materi Komputer
+        </h2>
+        <div class="flex flex-wrap justify-center gap-4">
+          <iframe
+            class="w-full max-w-md aspect-video rounded-lg shadow-md border border-gray-300"
+            src="https://www.youtube.com/embed/YIHlqRtNd8Q"
+            allowfullscreen
+          ></iframe>
+          <iframe
+            class="w-full max-w-md aspect-video rounded-lg shadow-md border border-gray-300"
+            src="https://www.youtube.com/embed/HB4I2CgkcCo"
+            allowfullscreen
+          ></iframe>
+          <iframe
+            class="w-full max-w-md aspect-video rounded-lg shadow-md border border-gray-300"
+            src="https://www.youtube.com/embed/Kq1PqZHAJmY"
+            allowfullscreen
+          ></iframe>
+          <iframe
+            class="w-full max-w-md aspect-video rounded-lg shadow-md border border-gray-300"
+            src="https://www.youtube.com/embed/iGFmXUxelbE"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </section>
+    </main>
+    <footer class="bg-primary text-white py-6">
+      <div class="container mx-auto text-center px-4">
+        <p class="text-sm md:text-base">
+          &copy; 2025 Kelompok 1 - Semua hak dilindungi.
+        </p>
+        <nav class="mt-4">
+          <ul class="flex flex-wrap justify-center space-x-6">
+            <li>
+              <a href="beranda.html" class="hover:text-accent">Beranda</a>
+            </li>
+            <li><a href="Materi.html" class="hover:text-accent">Materi</a></li>
+            <li>
+              <a href="simulasi.html" class="hover:text-accent">Simulasi</a>
+            </li>
+            <li><a href="quiz.html" class="hover:text-accent">Kuis</a></li>
+          </ul>
+        </nav>
+        <p class="mt-4 text-sm md:text-base">
+          Ikuti kami:
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            class="hover:text-accent"
+            >Facebook</a
+          >
+          |
+          <a
+            href="https://twitter.com"
+            target="_blank"
+            class="hover:text-accent"
+            >Twitter</a
+          >
+          |
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            class="hover:text-accent"
+            >Instagram</a
+          >
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

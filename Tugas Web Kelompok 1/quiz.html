@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kuis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#050C9C",
+              secondary: "#3572EF",
+              accent: "#3ABEF9",
+              light: "#A7E6FF",
+            },
+          },
+        },
+      };
+      document.addEventListener("DOMContentLoaded", function () {
+        const clickSound = new Audio("ASSETS/mouseklik.mp3");
+
+        function enableAudio() {
+          clickSound
+            .play()
+            .catch((e) => console.warn("Audio play blocked:", e));
+          document.removeEventListener("click", enableAudio);
+        }
+
+        document.addEventListener("click", enableAudio);
+
+        function playClickSound() {
+          const soundClone = clickSound.cloneNode();
+          soundClone.play().catch((e) => console.error("Audio play error:", e));
+        }
+
+        document.querySelectorAll("a, button").forEach((element) => {
+          element.addEventListener("click", playClickSound);
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const correctAnswers = [
+          "B", // Question 1
+          "B", // Question 2
+          "B", // Question 3
+          "A", // Question 4
+          "B", // Question 5
+          "A", // Question 6
+          "C", // Question 7
+          "C", // Question 8
+          "C", // Question 9
+          "D", // Question 10
+        ];
+
+        const quizContainer = document.querySelector("main");
+        const resultContainer = document.createElement("div");
+        resultContainer.className = "text-center mt-8";
+        quizContainer.appendChild(resultContainer);
+
+        const submitButton = document.createElement("button");
+        submitButton.textContent = "Submit Quiz";
+        submitButton.className =
+          "bg-secondary text-white px-4 py-2 rounded hover:bg-accent";
+        submitButton.addEventListener("click", () => {
+          let score = 0;
+          const selectedAnswers = document.querySelectorAll(
+            "input[type='radio']:checked"
+          );
+
+          if (selectedAnswers.length < correctAnswers.length) {
+            alert("Harap jawab semua pertanyaan sebelum mengirim kuis.");
+            return;
+          }
+
+          selectedAnswers.forEach((answer, index) => {
+            const questionContainer = answer.closest(".bg-white");
+            const feedback = document.createElement("p");
+            feedback.className = "mt-2 font-semibold";
+
+            if (answer.value === correctAnswers[index]) {
+              score++;
+              feedback.textContent = "Benar!";
+              feedback.classList.add("text-green-500");
+            } else {
+              feedback.textContent = `Salah! Jawaban yang benar adalah ${correctAnswers[index]}.`;
+              feedback.classList.add("text-red-500");
+            }
+
+            // Hapus feedback sebelumnya jika ada
+            const existingFeedback = questionContainer.querySelector(".font-semibold");
+            if (existingFeedback) {
+              existingFeedback.remove();
+            }
+
+            questionContainer.appendChild(feedback);
+          });
+
+          resultContainer.innerHTML = `<p class="text-xl font-bold">Your score is ${score} out of ${correctAnswers.length}</p>`;
+        });
+
+        quizContainer.appendChild(submitButton);
+      });
+    </script>
+  </head>
+  <body class="bg-light text-gray-800">
+    <header class="bg-primary text-white py-4">
+      <div class="container mx-auto text-center px-4">
+        <h1 class="text-3xl font-bold animate-bounce">KUIS KOMPONEN KOMPUTER</h1>
+        <nav class="mt-4">
+          <ul class="flex flex-wrap justify-center space-x-6">
+            <li>
+              <a href="index.html" class="text-light hover:text-accent"
+                >Beranda</a
+              >
+            </li>
+            <li>
+              <a href="Materi.html" class="text-light hover:text-accent"
+                >Materi</a
+              >
+            </li>
+            <li>
+              <a href="simulasi.html" class="text-light hover:text-accent">Simulasi</a>
+            </li>
+            <li><a href="quiz.html" class="text-light hover:text-accent">Kuis</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container mx-auto my-8 px-4">
+      <section class="space-y-8">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <img src="ASSETS/MONITOR.png" alt="Monitor" class="w-full mb-4 max-w-xs mx-auto" />
+          <p class="font-bold text-sm md:text-base">
+            1. Apa fungsi utama dari monitor dalam sebuah komputer?
+          </p>
+          <ul class="list-disc pl-6 space-y-2 text-sm md:text-base">
+            <li>
+              <label><input type="radio" name="q1" value="A" /> A. Menyimpan data.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q1" value="B" /> B. Menampilkan informasi.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q1" value="C" /> C. Mengolah data dan menjalankan instruksi.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q1" value="D" /> D. Menghubungkan perangkat keras.</label>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <img src="ASSETS/RAM.png" alt="RAM" class="w-full mb-4 max-w-xs mx-auto" />
+          <p class="font-bold text-sm md:text-base">2. Gambar diatas adalah?</p>
+          <ul class="list-disc pl-6 space-y-2 text-sm md:text-base">
+            <li>
+              <label><input type="radio" name="q2" value="A" /> A. SSD.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q2" value="B" /> B. RAM.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q2" value="C" /> C. GPU.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q2" value="D" /> D. CPU.</label>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <img src="ASSETS/CPU.png" alt="CPU" class="w-full mb-4 max-w-xs mx-auto" />
+          <p class="font-bold text-sm md:text-base">
+            3. Apa fungsi utama dari CPU dalam sebuah komputer?
+          </p>
+          <ul class="list-disc pl-6 space-y-2 text-sm md:text-base">
+            <li>
+              <label><input type="radio" name="q3" value="A" /> A. Menyimpan data.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q3" value="B" /> B. Mengolah data dan menjalankan instruksi.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q3" value="C" /> C. Menampilkan informasi.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q3" value="D" /> D. Menghubungkan perangkat keras.</label>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <img src="ASSETS/GPU.png" alt="GPU" class="w-full mb-4 max-w-xs mx-auto" />
+          <p class="font-bold text-sm md:text-base">4. Apa itu GPU?</p>
+          <ul class="list-disc pl-6 space-y-2 text-sm md:text-base">
+            <li>
+              <label><input type="radio" name="q4" value="A" /> A. Komponen perangkat keras dalam komputer yang dirancang khusus
+              untuk memproses dan menghasilkan gambar serta video.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q4" value="B" /> B. Komponen utama dalam komputer yang berfungsi sebagai otak dari
+              sistem.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q4" value="C" /> C. Jenis perangkat penyimpanan data yang menggunakan memori flash
+              untuk menyimpan data secara permanen.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q4" value="D" /> D. Jenis memori komputer yang digunakan untuk menyimpan data
+              sementara yang diperlukan oleh CPU saat menjalankan program dan
+              proses.</label>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <img
+            src="ASSETS/MOTHERBOARD.png"
+            alt="Motherboard"
+            class="w-full mb-4 max-w-xs mx-auto"
+          />
+          <p class="font-bold text-sm md:text-base">
+            5. Apa fungsi utama dari motherboard dalam sebuah komputer?
+          </p>
+          <ul class="list-disc pl-6 space-y-2 text-sm md:text-base">
+            <li>
+              <label><input type="radio" name="q5" value="A" /> A. Menyimpan data.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q5" value="B" /> B. Menghubungkan semua komponen perangkat keras.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q5" value="C" /> C. Menjalankan aplikasi.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q5" value="D" /> D. Menampilkan informasi.</label>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <img src="ASSETS/SSD.png" alt="SSD" class="w-full mb-4 max-w-xs mx-auto" />
+          <p class="font-bold text-sm md:text-base">6. Apa itu SSD?</p>
+          <ul class="list-disc pl-6 space-y-2 text-sm md:text-base">
+            <li>
+              <label><input type="radio" name="q6" value="A" /> A. Jenis perangkat penyimpanan data yang menggunakan memori flash
+              untuk menyimpan informasi.</label>
+            </li>
+            <li></li>
+              <label><input type="radio" name="q6" value="B" /> B. Jenis memori komputer yang digunakan untuk menyimpan data
+              sementara yang diperlukan oleh sistem operasi dan aplikasi saat
+              komputer sedang berjalan.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q6" value="C" /> C. Komponen perangkat keras yang dirancang khusus untuk memproses
+              dan menghasilkan gambar, video, dan grafik.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q6" value="D" /> D. Komponen utama dalam komputer yang bertanggung jawab untuk
+              menjalankan instruksi dan memproses data.</label>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <img
+            src="ASSETS/COOLING FAN.png"
+            alt="Cooling Fan"
+            class="w-full mb-4 max-w-xs mx-auto"
+          />
+          <p class="font-bold text-sm md:text-base">
+            7. Cooling fan biasanya digunakan untuk mendinginkan komponen mana
+            dalam sistem komputer?
+          </p>
+          <ul class="list-disc pl-6 space-y-2 text-sm md:text-base">
+            <li>
+              <label><input type="radio" name="q7" value="A" /> A. Hard disk drive (HDD).</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q7" value="B" /> B. Power supply.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q7" value="C" /> C. CPU dan GPU.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q7" value="D" /> D. Semua benar.</label>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <img src="ASSETS/komputer.png" alt="Komputer" class="w-full mb-4 max-w-xs mx-auto" />
+          <p class="font-bold text-sm md:text-base">
+            8. Apa komponen utama yang bertanggung jawab untuk menjalankan
+            instruksi dalam komputer?
+          </p>
+          <ul class="list-disc pl-6 space-y-2 text-sm md:text-base">
+            <li>
+              <label><input type="radio" name="q8" value="A" /> A. RAM.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q8" value="B" /> B. GPU.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q8" value="C" /> C. CPU.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q8" value="D" /> D. Hard drive.</label>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <img
+            src="ASSETS/MOUSE KEYBOARD.png"
+            alt="Keyboard"
+            class="w-full mb-4 max-w-xs mx-auto"
+          />
+          <p class="font-bold text-sm md:text-base">
+            9. Apa fungsi utama dari keyboard dalam sebuah komputer?
+          </p>
+          <ul class="list-disc pl-6 space-y-2 text-sm md:text-base">
+            <li>
+              <label><input type="radio" name="q9" value="A" /> A. Menyimpan data.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q9" value="B" /> B. Menghasilkan suara.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q9" value="C" /> C. Memasukkan data dan perintah.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q9" value="D" /> D. Menampilkan gambar.</label>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <p class="font-bold text-sm md:text-base">
+            10. Apa fungsi utama dari mouse dalam sebuah komputer?             ?
+          </p>
+          <ul class="list-disc pl-6 space-y-2 text-sm md:text-base">
+            <li>
+              <label><input type="radio" name="q10" value="A" /> A. Menyimpan data.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q10" value="B" /> B. Menghasilkan suara.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q10" value="C" /> C. Memasukkan data dan perintah.</label>
+            </li>
+            <li>
+              <label><input type="radio" name="q10" value="D" /> D. Menggerakkan kursor.</label>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-primary text-white py-6">
+      <div class="container mx-auto text-center px-4">
+        <p class="text-sm md:text-base">&copy; 2025 Kelompok 1 - Semua hak dilindungi.</p>
+        <nav class="mt-4">
+          <ul class="flex flex-wrap justify-center space-x-6">
+            <li>
+              <a href="beranda.html" class="hover:text-accent">Beranda</a>
+            </li>
+            <li><a href="Materi.html" class="hover:text-accent">Materi</a></li>
+            <li><a href="simulasi.html" class="hover:text-accent">Simulasi</a></li>
+            <li><a href="quiz.html" class="hover:text-accent">Kuis</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
